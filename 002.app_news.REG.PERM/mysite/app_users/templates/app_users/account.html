@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница пользователя</title>
+</head>
+<body>
+    <div>
+      <p>username: {{ request.user.username }}</p>
+      <p>Город: {{ request.user.profile.city }}</p>
+      <p>Телефон: {{ request.user.profile.phone_number }}</p>
+      <p>Статус(флаг верификации): {{ group }}</p>
+
+      <p>Количество опубликованных новостей: {{ request.user.profile.num_news }}</p>
+    </div>
+
+    <h1>Страница пользователя</h1>
+
+    <br>
+
+    <div>
+        <a href="{% url 'main' %}">Back to main</a>
+    </div>
+</body>
+</html>

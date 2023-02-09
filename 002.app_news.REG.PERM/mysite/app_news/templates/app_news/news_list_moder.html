@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новости на модерацию</title>
+</head>
+<body>
+    <h1>Новости на модерацию</h1>
+    {% if news_list %}
+    <div>
+        {% for news in news_list %}
+            {% if not news.is_active %}
+                <div>
+                  <h3><a href="{% url 'app_news:news_details_moder' pk=news.pk %}">Title: {{ news.title }}</a></h3>
+                  <p>Content: {{ news.content }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% else %}
+        <p>Новостей нет.</p>
+    {% endif %}
+
+<!--    <div>-->
+<!--        <a href="{% url 'app_news:news_create' %}">Create news (only verify)</a>-->
+<!--    </div>-->
+
+    <br>
+    <div>
+    <a href="{% url 'main' %}">Back to main</a>
+    </div>
+</body>
+</html>

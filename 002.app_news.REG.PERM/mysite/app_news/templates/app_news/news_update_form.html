@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update news</title>
+</head>
+<body>
+    <h1>Update news</h1>
+    <div>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Update</button>
+        </form>
+    </div>
+    <div>
+    <a href="{% url 'app_news:news_details' pk=object.pk %}">Back to news</a>
+    </div>
+</body>
+</html>

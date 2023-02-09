@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница пользователя</title>
+</head>
+<body>
+  <h1>Страница пользователя</h1>
+  <div>
+    <p>username: {{ request.user.username }}</p>
+    <p>email: {{ request.user.email }}</p>
+    <p>first_name: {{ request.user.first_name }}</p>
+    <p>last_name: {{ request.user.last_name }}</p>
+    <p>День рождения: {{ request.user.profile.date_of_birth }}</p>
+    <p>Город: {{ request.user.profile.city }}</p>
+    <p>Карта скидок: {{ request.user.profile.discount_card }}</p>
+    <p>Телефон: {{ request.user.profile.phone_number }}</p>
+  </div>
+  <br>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News #{{ object.pk }} for modreation</title>
+</head>
+<body>
+  <h1>News #{{ object.pk }} for moderation</h1>
+<!--  <div>-->
+<!--      <h3>Title: {{ object.title }}</h3>-->
+<!--      <p>Content: {{ object.content }}</p>-->
+<!--      <p>News by - {{ object.publisher }}</p>-->
+<!--      <p>Date: {{ object.created_at }}</p>-->
+<!--  </div>-->
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Update</button>
+    </form>
+  </div>
+  <div>
+    <a href="{% url 'app_news:news_delete' pk=news.pk %}">Delete news</a>
+  </div>
+  <div>
+    <a href="{% url 'app_news:news_list_moder' %}">Back to news list for moderation</a>
+  </div>
+</body>
+</html>

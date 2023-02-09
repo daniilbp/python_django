@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MAIN</title>
+</head>
+<body>
+
+<h1><a href="{% url 'main' %}">-> the MyBlog <-</a></h1>
+<br>
+<h2>Main page</h2>
+<br>
+{% if request.user.is_authenticated %}
+    <h3>Welcome {% firstof request.user.first_name request.user.username %}!</h3>
+    <br>
+    <div>
+        <a href="{% url 'account' pk=request.user.profile.pk %}">Profile</a>
+        <br>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+{% else %}
+    <h3>Hello dear Guest!</h3>
+    <div>
+        <h2>Login form (Test!2#4)</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <a href="{% url 'register' %}">Registration</a>
+
+{% endif %}
+<br>
+<h2>Site menu</h2>
+<br>
+
+
+</body>
+</html>

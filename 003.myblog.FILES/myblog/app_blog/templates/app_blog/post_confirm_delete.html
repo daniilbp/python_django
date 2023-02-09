@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm delete post #{{ object.pk }}</title>
+</head>
+<body>
+  <h1>Are you sure want to delete post #{{ object.pk }}?</h1>
+  <br>
+  <div>
+    <a href="{% url 'app_blog:post_detail' pk=object.pk %}">Back to post</a>
+  </div>
+  <br>
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+</body>
+</html>

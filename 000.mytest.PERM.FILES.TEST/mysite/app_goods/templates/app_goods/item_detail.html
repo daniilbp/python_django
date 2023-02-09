@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item #{{ item.pk }}</title>
+</head>
+<body>
+  <h1>Item #{{ item.pk }} details</h1>
+  <div>
+    <p>{{ item.name }}</p>
+    <p>{{ item.code }}</p>
+    <p>{{ item.price }}</p>
+  </div>
+  <p><a href="{% url 'items_list' %}">Back to items list</a></p>
+</body>
+</html>

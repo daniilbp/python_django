@@ -1,0 +1,35 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Comments list
+{% endblock %}
+
+{% block body %}
+  <h1>Comments:</h1>
+  {% if comments %}
+    <div>
+      {% for comment in comments %}
+        <div>
+          <p><a href="{% url 'shopapp:comment_details' pk=comment.pk %}">Details of comment #{{ comment.pk }}</a></p>
+          {% if comment.user.username != 'guest' %}
+            <p>Comment by {% firstof comment.user.first_name comment.user.username %}</p>
+          {% else %}
+            <p>Comment by guest(anonim) - {{ comment.name }}</p>
+          {% endif %}
+          <p>Comment text: {{ comment.comment_text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <h3>No comments yet</h3>
+  {% endif %}
+
+  <div>
+    <a href="{% url 'shopapp:comment_create' %}">Create a new comment</a>
+  </div>
+
+  <br>
+  <div>
+    <a href="{% url 'main' %}">Back to main</a>
+  </div>
+{% endblock %}

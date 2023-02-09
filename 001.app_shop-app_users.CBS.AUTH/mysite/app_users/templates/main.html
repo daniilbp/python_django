@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+  <h1>Я - гланая страница</h1>
+  <br>
+  {% if request.user.is_authenticated %}
+    <h3>Добро пожаловать на сайт {{ request.user.username }}</h3>
+
+    <br>
+    <div>
+      <a href="{% url 'logout' %}">Выйти</a>
+    </div>
+  {% else %}
+    <h3>Вы неавторизированны на нашем сайте.</h3>
+    <div>
+      <a href="{% url 'login' %}">Войти</a>
+    </div>
+  {% endif %}
+    <br>
+    <h2>Меню сайта</h2>
+    <div>
+    <a href="{% url 'shopapp:groups_list' %}">Groups</a>
+    </div>
+    <br>
+    <div>
+    <a href="{% url 'shopapp:index' %}">Shop Index</a> <!-- shop/ -->
+    </div>
+    <br>
+    <div>
+    <a href="{% url 'shopapp:products_list' %}">Products list</a>
+    </div>
+    <br>
+    <div>
+    <a href="{% url 'shopapp:orders_list' %}">Orders list</a>
+    </div>
+    <br>
+    <div>
+    <a href="{% url 'shopapp:comments_list' %}">Comments list</a>
+    </div>
+</body>
+</html>

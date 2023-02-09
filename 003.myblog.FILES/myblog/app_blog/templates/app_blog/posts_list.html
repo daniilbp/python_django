@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts list</title>
+</head>
+<body>
+    <h1>Posts list</h1>
+    {% for post in posts_list %}
+        <div>
+            <p><strong>Author: {% firstof post.user.profile.name post.user.username %}</strong></p>
+            <p>{{ post.content|truncatechars:100 }}</p>
+            <p>{{ post.created_at }}</p>
+            <p><a href="{% url 'app_blog:post_detail' pk=post.pk %}"><small>more details...</small></a></p>
+            <p>---------------------------------------</p>
+        </div>
+    {% endfor %}
+    {% if not posts_list %}
+        <h2>No posts yet.</h2>
+        <br>
+    {% endif %}
+    <p><a href="{% url 'app_blog:create_post' %}">Create post</a></p>
+    <p><a href="{% url 'app_blog:upload_post' %}">Upload post(s)</a></p>
+    <p><a href="{% url 'main' %}">Back to main</a></p>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'shopapp/base.html' %}
+
+
+{% block title %}
+  Confirm delete comment #{{ object.pk }}
+{% endblock %}
+
+{% block body %}
+  <h1>Are you sure want to delete comment #{{ object.pk }}?</h1>
+  <br>
+  <div>
+    <a href="{% url 'shopapp:comment_details' pk=object.pk %}">Back to comment</a>
+  </div>
+  <br>
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+{% endblock %}

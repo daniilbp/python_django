@@ -1,0 +1,23 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Comment #{{ object.pk }} details
+{% endblock %}
+
+{% block body %}
+  <h1>Comment # {{ object.pk }}</h1>
+  <div>
+    <p>Comment by {% firstof object.user.first_name object.user.username %}</p>
+    <p>Comment text: {{ comment.comment_text }}</p>
+    <p>Comment data: {{ comment.created_at }}</p>
+  </div>
+  <div>
+    <a href="{% url 'shopapp:comment_update' pk=comment.pk %}">Update comment</a>
+  </div>
+  <div>
+    <a href="{% url 'shopapp:comment_delete' pk=comment.pk %}">Delete comment</a>
+  </div>
+  <div>
+    <a href="{% url 'shopapp:comments_list' %}">Back to comments list</a>
+  </div>
+{% endblock %}

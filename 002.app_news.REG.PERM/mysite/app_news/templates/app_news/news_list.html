@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новости</title>
+</head>
+<body>
+    <h1>Новости</h1>
+    {% if news_list %}
+    <div>
+        <div>
+            <h3>Filter for news list:</h3>
+            <form method="post">
+                {% csrf_token %}
+                <select name="format">
+                    <option value="Filter" disabled selected>Filter</option>
+                    <option value="title">Title (ascending)</option>
+                    <option value="-title">Title (descending)</option>
+                    <option value="author">Author (ascending)</option>
+                    <option value="-author">Author (descending)</option>
+                    <option value="created_at">Date (ascending)</option>
+                    <option value="-created_at">Date (descending)</option>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        {% for news in news_list %}
+            {% if news.is_active %}
+                <div>
+                  <h3><a href="{% url 'app_news:news_details' pk=news.pk %}">Title: {{ news.title }}</a></h3>
+                  <p>Content: {{ news.content }}</p>
+                  <p>Author: {{ news.author }}</p>
+                  <p>Date: {{ news.created_at }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% else %}
+        <p>Новостей нет.</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'app_news:news_create' %}">Create news (only verify)</a>
+    </div>
+
+    <br>
+    <div>
+    <a href="{% url 'main' %}">Back to main</a>
+    </div>
+</body>
+</html>

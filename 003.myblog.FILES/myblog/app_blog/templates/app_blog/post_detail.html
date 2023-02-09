@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post {{ post.pk }} details</title>
+</head>
+<body>
+    <h1>Post {{ post.pk }} details</h1>
+    <p>Author: {% firstof post.user.profile.name post.user.username %}</p>
+    <p>Title: {{ post.title }}</p>
+    <p>Content: {{ post.content }}</p>
+    <p>Date of created: {{ post.created_at }}</p>
+    {% if post.images_path %}
+        {% for img_path in post.images_path %}
+            <img src="{{ img_path }}">
+        {% endfor %}
+    {% endif %}
+    <br>
+    <p><a href="{% url 'app_blog:post_update' pk=post.pk %}">Update post</a></p>
+    <br>
+    <p><a href="{% url 'app_blog:post_delete' pk=post.pk %}">Delete post</a></p>
+    <br>
+    <p><a href="{% url 'app_blog:posts_list' %}">Back to posts list</a></p>
+    <p><a href="{% url 'main' %}">Back to main</a></p>
+</body>
+</html>

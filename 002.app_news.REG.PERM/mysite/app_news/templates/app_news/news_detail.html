@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News #{{ news.pk }} details</title>
+</head>
+<body>
+  <h1>News #{{ news.pk }} details</h1>
+  <div>
+      <h3>Title: {{ news.title }}</h3>
+      <p>Content: {{ news.content }}</p>
+      <p>News by - {{ news.publisher }}</p>
+      <p>Date: {{ news.created_at }}</p>
+  </div>
+  <div>
+    <a href="{% url 'app_news:news_update' pk=news.pk %}">Update news</a>
+  </div>
+  <div>
+    <a href="{% url 'app_news:news_delete' pk=news.pk %}">Delete news</a>
+  </div>
+  <div>
+    <a href="{% url 'app_news:news_list' %}">Back to news list</a>
+  </div>
+
+  <h2>Comments:</h2>
+  <div>
+      {% for comment in comments %}
+          {% if comment.user %}
+            <p><strong>Comment by {% firstof comment.user.first_name comment.user.username %}</strong></p>
+          {% else %}
+            <p><strong>Comment by anonim - {{ comment.name }}</strong></p>
+          {% endif %}
+          <p>Comment text: {{ comment.comment_text }}</p>
+          <p>Date of created: {{ comment.created_at }}</p>
+          ---------------------------------------
+      {% endfor %}
+  </div>
+  <div>
+      <h3>Create comment:</h3>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+      </form>
+  </div>
+</body>
+</html>

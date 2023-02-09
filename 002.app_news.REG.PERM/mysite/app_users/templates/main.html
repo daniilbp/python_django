@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+  <h1>Новостной сайт</h1>
+  <h2>Я - гланая страница</h2>
+  <br>
+  {% if request.user.is_authenticated %}
+    <h3>Добро пожаловать на сайт {{ request.user.username }}</h3>
+    <br>
+    <div>
+      <a href="{% url 'account' %}">Данные аккаунта</a>
+    </div>
+    <br>
+    <div>
+      <a href="{% url 'logout' %}">Выйти</a>
+    </div>
+  {% else %}
+    <h3>Вы неавторизированны на нашем сайте.</h3>
+    <div>
+      <a href="{% url 'login' %}">Войти</a>
+    </div>
+    <p>или</p>
+    <div>
+      <a href="{% url 'register' %}">Зарегистрироваться</a>
+    </div>
+  {% endif %}
+    <br>
+    <h2>Меню сайта</h2>
+    <div>
+    <a href="{% url 'app_news:news_list' %}">News list</a>
+    </div>
+    {% if group == "Модератор" %}
+      <br>
+      <div>
+        <a href="{% url 'app_news:news_list_moder' %}">News list for moderation</a>
+      </div>
+    {% endif %}
+</body>
+</html>
