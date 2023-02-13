@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Items list</title>
+</head>
+<body>
+  <h1>Items list</h1>
+  {% if items_list %}
+    <table border="1">
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>Price</td>
+          <td>Link</td>
+        </tr>
+        {% for item in items_list %}
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.get_display_price }}</td>
+            <td><a href="{% url 'item_detail' pk=item.pk %}">More information</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  {% else %}
+    <p>No items yet.</p>
+  {% endif %}
+
+  <p><a href="{% url 'main' %}">Back to main</a></p>
+</body>
+</html>
